@@ -25,6 +25,10 @@ class UserRepository:
     # dosya okuma işlemi yapacaz. Tüm userları users listesine atacaz
     # dosya ilk başta kullanılıyorsa olmayacak bu yüzden os import edildi
     def loadUsers(self):
+        if not os.path.exists("users.json"): # bu isimde bir dosya bu path'de yoksa dosyayı oluşturuyoruz.
+            with open("users.json","w",encoding="utf-8") as file:
+                pass
+                
         if os.path.exists("users.json"): # bu isimde bir dosya bu path'de var mı diye bakiyor
             with open("users.json","r",encoding="utf-8") as file:
                 coming_from_file_users = json.load(file)
@@ -83,7 +87,7 @@ my_repistory = UserRepository()
 
 while True:
     print("Menü".center(50,"*"))
-    secim = input("1- Register(Kaydol)\n2- Login(Giris)\n3- Logout(Kullanici cikisi yapmak icin)\n4- Identity(O anda kim login)\n5- Exit(Programdan cikmak icin)\nSeciminiz: ")
+    secim = input("1- Register\n2- Login\n3- Logout\n4- Identity\n5- Exit\nSeciminiz: ")
 
     if secim == "5":
         break
